@@ -1,9 +1,11 @@
+// ATM interface
 interface ATM{
 	void balance();
 	void withdraw();
 	void printReceipt();
 }
 
+// Example use of ATM interface
 public class account implements ATM{
 	public void balance(){
 		System.out.println("Balance is £10");
@@ -21,4 +23,20 @@ public class account implements ATM{
 		obj.withdraw();
 		obj.printReceipt();  
 	} 
+}
+
+// Health Montitoring interface
+interface healthMonitor{
+	void patientHealthStatus();
+	float heartRate();
+	void breathing()
+	void administorMedication();
+}
+
+// Fitness App interface
+interface fitnessApp{
+	float weight();
+	float calories();
+	void sportsUndertaken();
+	void recipies();
 }
