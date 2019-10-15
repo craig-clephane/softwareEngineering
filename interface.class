@@ -1,0 +1,26 @@
+interface ATM{
+	void balance();
+	void withdraw();
+	void printReceipt();
+}
+
+public class account implements ATM{
+	public void balance(){
+		System.out.println("Balance is £10");
+		return 10;
+	}  
+	public void withdraw(int withdraw){
+		balance -= this.withdraw;
+		System.out.println("Withdraw Successful");
+	}  
+	public void printReceipt(){
+		System.out.println("This is your receipt");
+	}
+
+	public static void main(String args[]){  
+		ATM obj = new ATM();  
+		obj.balance(); 
+		obj.withdraw(5);
+		obj.printReceipt();  
+	} 
+}
