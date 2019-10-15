@@ -1,11 +1,11 @@
 interface ATM{
-	void balance();
+	float balance();
 	void withdraw();
 	void printReceipt();
 }
 
 public class account implements ATM{
-	public void balance(){
+	public float balance(){
 		System.out.println("Balance is £10");
 		return 10;
 	}  
