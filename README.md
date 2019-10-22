@@ -20,3 +20,8 @@ Will Woodruff
 
 ###SLACK
 https://join.slack.com/t/lincolngroup3/shared_invite/enQtNzk3ODYzMjM5MTY5LWE5Zjg2YWRkNWM2NThiYmM3YzYxZjdkYzVhODA5NWUyMmU2NGRhOWVjNGMyYThhMWNiMTVmYzA2NGZlYzZhZjQ
+
+
+
+Client ID 432ad931cf3e427084e9447c79a57835
+Client Secret 9d07660464dd49fa84ce468bb51132d7
