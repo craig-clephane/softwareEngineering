@@ -17,3 +17,6 @@ Owen Mclean
 
 Will Woodruff
 15615022@students.lincoln.ac.uk
+
+###SLACK
+https://join.slack.com/t/lincolngroup3/shared_invite/enQtNzk3ODYzMjM5MTY5LWE5Zjg2YWRkNWM2NThiYmM3YzYxZjdkYzVhODA5NWUyMmU2NGRhOWVjNGMyYThhMWNiMTVmYzA2NGZlYzZhZjQ
