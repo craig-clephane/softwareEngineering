@@ -6,15 +6,15 @@
 import requests
 import json
 
+headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer BQC9m22cm2mOFnfBYTrewC8xAsq2I0l0OsViJW6cxXa-iWZoWS2mBov4iXoLZVyolwzVzjslqNqS_Kyi6YMuFCRQB3aLZ8Wssj4342cUmUsZ_CVrqy_EOHianO5qLsDSwKF_oDC3Z_ydXITGGv-V08wcFi35yJo',
+}
 
 
 def runRequest(value):
-    headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQC9m22cm2mOFnfBYTrewC8xAsq2I0l0OsViJW6cxXa-iWZoWS2mBov4iXoLZVyolwzVz'
-                     'jslqNqS_Kyi6YMuFCRQB3aLZ8Wssj4342cUmUsZ_CVrqy_EOHianO5qLsDSwKF_oDC3Z_ydXITGGv-V08wcFi35yJo',
-}
+
     params = (
         ('q', value),
         ('type', 'track'),
@@ -31,4 +31,9 @@ def runRequest(value):
     else:
         print('An error occurred -', response.status_code)
 
-runRequest('hi')
+
+def createplaylist():
+    data = '{"name":"Test", "public":false}'
+    requests.post('https://api.spotify.com/v1/users/7wxlddrk3temavvzzao5qidyu/playlists', headers=headers, data=data)
+
+createplaylist()
