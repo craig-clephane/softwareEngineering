@@ -6,24 +6,28 @@
 import requests
 import json
 
-headers = {
+
+
+def runRequest(value):
+    headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQC9TAewts1UyNAasOuHx9QSuNUYPHafL_Nomai9ViZar9PbNlmvnsPaOUMIym8gIYKOav96ZEGpQUWZE4FgqkPgHCJ0sGW3XCvomScpA3j7wsUycAzBiJbAZ4YtO3BXRUd5iZ9KL3NiMqrE0KChNfOB5793YRuuyg',
+    'Authorization': 'Bearer BQC9m22cm2mOFnfBYTrewC8xAsq2I0l0OsViJW6cxXa-iWZoWS2mBov4iXoLZVyolwzVzjslqNqS_Kyi6YMuFCRQB3aLZ8Wssj4342cUmUsZ_CVrqy_EOHianO5qLsDSwKF_oDC3Z_ydXITGGv-V08wcFi35yJo',
 }
+    params = (
+        (value, 'winner'),
+        ('type', 'track'),
+    )
 
-params = (
-    ('q', 'winner'),
-    ('type', 'track'),
-)
+    response = requests.get('https://api.spotify.com/v1/search', headers=headers, params=params)
+    json_data = json.loads(response.text)
 
-response = requests.get('https://api.spotify.com/v1/search', headers=headers, params=params)
-json_data = json.loads(response.text)
+    if response.status_code == 200:
+        print('Success! We are generating your songs!')
+        print(json_data)
+    elif response.status_code == 404:
+        print('Not Found. Sorry, there wern\'t any results for that article')
+    else:
+        print('An error occurred -', response.status_code)
 
-if response.status_code == 200:
-    print('Success! We are generating your songs!')
-    print(json_data)
-elif response.status_code == 404:
-    print('Not Found. Sorry, there wern\'t any results for that article')
-else:
-    print('An error occurred -', response.status_code)
+runRequest('hi')
