@@ -12,10 +12,11 @@ def runRequest(value):
     headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQC9m22cm2mOFnfBYTrewC8xAsq2I0l0OsViJW6cxXa-iWZoWS2mBov4iXoLZVyolwzVzjslqNqS_Kyi6YMuFCRQB3aLZ8Wssj4342cUmUsZ_CVrqy_EOHianO5qLsDSwKF_oDC3Z_ydXITGGv-V08wcFi35yJo',
+    'Authorization': 'Bearer BQC9m22cm2mOFnfBYTrewC8xAsq2I0l0OsViJW6cxXa-iWZoWS2mBov4iXoLZVyolwzVz'
+                     'jslqNqS_Kyi6YMuFCRQB3aLZ8Wssj4342cUmUsZ_CVrqy_EOHianO5qLsDSwKF_oDC3Z_ydXITGGv-V08wcFi35yJo',
 }
     params = (
-        (value, 'winner'),
+        ('q', value),
         ('type', 'track'),
     )
 
