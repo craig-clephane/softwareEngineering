@@ -7,9 +7,9 @@ import requests
 import json
 
 headers = {
-    'Accept': 'application/json',
+    #'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQC9m22cm2mOFnfBYTrewC8xAsq2I0l0OsViJW6cxXa-iWZoWS2mBov4iXoLZVyolwzVzjslqNqS_Kyi6YMuFCRQB3aLZ8Wssj4342cUmUsZ_CVrqy_EOHianO5qLsDSwKF_oDC3Z_ydXITGGv-V08wcFi35yJo',
+    'Authorization': 'Bearer BQA7KQzRzrqzEGDLSYR2nMdQR_MKMxnCSJVS80M9lxy5nNofgm8FASq5QQilk_fl3Mx3wWYRnYkjbNsI-1AJe0BNVUWy0VlJVSHu6OBqi-zWVc4KOdfhyRF_sJPwbvQQMO54he5aWULguPthJtbvO28MO7U0HPpQksPaUUm9olXOUZuwul_irqd3Y2m5Hyg',
 }
 
 
@@ -25,15 +25,32 @@ def runRequest(value):
 
     if response.status_code == 200:
         print('Success! We are generating your songs!')
-        print(json_data)
+        #print(json_data)
     elif response.status_code == 404:
         print('Not Found. Sorry, there wern\'t any results for that article')
     else:
         print('An error occurred -', response.status_code)
 
+    song = json_data["tracks"]["items"][0]["album"]['id']
+    #print(song)
+    return song
+
 
 def createplaylist():
-    data = '{"name":"Test", "public":false}'
-    requests.post('https://api.spotify.com/v1/users/7wxlddrk3temavvzzao5qidyu/playlists', headers=headers, data=data)
+    data = '{"name":"A New Playlist", "public":false}'
+    response = requests.post('https://api.spotify.com/v1/users/7wxlddrk3temavvzzao5qidyu/playlists', headers=headers, data=data)
+    print(response)
 
-createplaylist()
+
+def addtrack(track):
+    params = (
+    ('uris', 'spotify:track:',track )
+)
+
+    response = requests.post('https://api.spotify.com/v1/playlists/7aEjvDQ1eCifCjOrHoqQNi/tracks', headers=headers, params=params)
+    print(response)
+
+    
+song = runRequest("hi")
+print(song)
+addtrack(song)
