@@ -6,5 +6,7 @@ newsHeadlines = news_init.accessNewsAPI()
 
 for row in newsHeadlines:
     for i in row:
-        spotify_init.runRequest(i)
+        song = spotify_init.runRequest(i)
+        if song is not None: 
+            spotify_init.addtrack(song)
     
