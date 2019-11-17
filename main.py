@@ -2,11 +2,10 @@
 import news_init
 import spotify_init
 
-newsHeadlines = news_init.accessNewsAPI()
+newsHeadlines = news_init.access_news_api()
 
 for row in newsHeadlines:
     for i in row:
-        song = spotify_init.runRequest(i)
+        song = spotify_init.run_request(i)
         if song is not None: 
-            spotify_init.addtrack(song)
-    
+            spotify_init.add_track(song)
