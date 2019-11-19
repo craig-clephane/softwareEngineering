@@ -13,7 +13,7 @@ bearer = spotauth.accessKey()
 headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer '+bearer + '',
+    'Authorization': 'Bearer ' + bearer,
 }
 
 
