@@ -54,5 +54,5 @@ def phrases(response):
     keywordsArray.append(keywords)
 
 
-access_news_api()
-print(keywordsArray)
+# access_news_api()
+# print(keywordsArray)
