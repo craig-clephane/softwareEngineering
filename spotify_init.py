@@ -5,11 +5,14 @@
 
 import requests
 import json
+import spotifyAuthorize as spotauth
+
+bearer = spotauth.accessKey()
 
 headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQBz0dl-5IUhuX9GBiqSkY4PBw_feRjYox3s8uimXPwkUbrtifLmAy1yIyZGI3bBKxI32OZxjASxizegJdGcF38XLx9fJ_GvIGXoXjKqOsJyMv5mNV6kbTjxJvqb7x9eMA0GIg3BPXRjWDTuIXZr9_hTcUlAv6l1johypMxaPGI5D8vi1FmWhbqBU9cPr4C9RBbQheQpg_bzBSJI3Gy9GiZbaPz7miHRLHU56iLS-jhp7Nqw2RXygd1hxdaaWjYXOorqqbLWfm3TljYAvPjp_g4voP1aAA',
+    'Authorization': 'Bearer '+bearer + '',
 }
 
 
