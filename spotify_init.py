@@ -3,23 +3,19 @@
 # Author(s): Will Woodruff
 # Collaborator(s): Craig Clephane
 import datetime
-
 import requests
 import json
-import spotifyAuthorize as spotauth
-
-bearer = spotauth.accessKey()
-
-headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer ' + bearer,
-}
 
 
-def run_request(value):
+def run_request(bearer, search_text):
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer,
+    }
+
     params = (
-        ('q', value),
+        ('q', search_text),
         ('type', 'track'),
     )
 
@@ -42,20 +38,32 @@ def run_request(value):
         return song
 
 
-def create_playlist():
-    data = '{"name":"' + str(datetime.date.today()) + '", "public":false}'
-    response = requests.post('https://api.spotify.com/v1/users/7wxlddrk3temavvzzao5qidyu/playlists', headers=headers,
+def create_playlist(bearer, user_id='7wxlddrk3temavvzzao5qidyu', playlist_name='Daily News Playlist'):
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer,
+    }
+
+    data = '{"name":"' + playlist_name + ' - ' + str(datetime.date.today().strftime('%d/%m/%Y')) + '", "public":false}'
+    response = requests.post(f'https://api.spotify.com/v1/users/{user_id}/playlists', headers=headers,
                              data=data)
     json_data = json.loads(response.text)
     playlist_id = json_data['external_urls']['spotify'].split('/')[-1]
     return playlist_id
 
 
-def add_track(track, playlist):
+def add_track(bearer, track, playlist_id):
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer,
+    }
+
     params = (
         ('uris', 'spotify:track:' + track),
     )
 
-    response = requests.post(f'https://api.spotify.com/v1/playlists/{playlist}/tracks', headers=headers,
+    response = requests.post(f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks', headers=headers,
                              params=params)
     print(response)
