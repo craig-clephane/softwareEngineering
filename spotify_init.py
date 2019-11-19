@@ -2,20 +2,20 @@
 # Last Edited: 29/10/2019
 # Author(s): Will Woodruff
 # Collaborator(s): Craig Clephane
-
+import datetime
 import requests
 import json
 
-headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQBz0dl-5IUhuX9GBiqSkY4PBw_feRjYox3s8uimXPwkUbrtifLmAy1yIyZGI3bBKxI32OZxjASxizegJdGcF38XLx9fJ_GvIGXoXjKqOsJyMv5mNV6kbTjxJvqb7x9eMA0GIg3BPXRjWDTuIXZr9_hTcUlAv6l1johypMxaPGI5D8vi1FmWhbqBU9cPr4C9RBbQheQpg_bzBSJI3Gy9GiZbaPz7miHRLHU56iLS-jhp7Nqw2RXygd1hxdaaWjYXOorqqbLWfm3TljYAvPjp_g4voP1aAA',
-}
 
+def run_request(bearer, search_text):
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer,
+    }
 
-def run_request(value):
     params = (
-        ('q', value),
+        ('q', search_text),
         ('type', 'track'),
     )
 
@@ -38,18 +38,32 @@ def run_request(value):
         return song
 
 
-def create_playlist():
-    data = '{"name":"A New Playlist", "public":false}'
-    response = requests.post('https://api.spotify.com/v1/users/7wxlddrk3temavvzzao5qidyu/playlists', headers=headers,
+def create_playlist(bearer, user_id='7wxlddrk3temavvzzao5qidyu', playlist_name='Daily News Playlist'):
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer,
+    }
+
+    data = '{"name":"' + playlist_name + ' - ' + str(datetime.date.today().strftime('%d/%m/%Y')) + '", "public":false}'
+    response = requests.post(f'https://api.spotify.com/v1/users/{user_id}/playlists', headers=headers,
                              data=data)
-    print(response)
+    json_data = json.loads(response.text)
+    playlist_id = json_data['external_urls']['spotify'].split('/')[-1]
+    return playlist_id
 
 
-def add_track(track):
+def add_track(bearer, track, playlist_id):
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + bearer,
+    }
+
     params = (
         ('uris', 'spotify:track:' + track),
     )
 
-    response = requests.post('https://api.spotify.com/v1/playlists/1HsXvdPOcUvIsamfEMxuaM/tracks', headers=headers,
+    response = requests.post(f'https://api.spotify.com/v1/playlists/{playlist_id}/tracks', headers=headers,
                              params=params)
     print(response)
